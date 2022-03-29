@@ -1,0 +1,171 @@
+$grey-dark: rgb(53, 53, 53);
+$grey-light: rgb(212, 212, 212);
+$white: #f0f0f0;
+$border-title: rgb(235, 216, 111);
+
+body {
+	background-color: $grey-light;
+	font-family: 'Cabin', sans-serif;
+	font-size: 18px;
+}
+
+.title {
+	font-family: 'Bebas Neue', cursive,'sans-serif';
+	font-size: 40px;
+	letter-spacing: 4px;
+	border-bottom: 2px solid $border-title;
+	margin-bottom: 20px;
+}
+a {
+	text-decoration: none;
+	transition: all 0.3s;
+	&:hover {
+		color: $border-title;
+	}
+}
+
+.main {
+
+	&__container {
+		max-width: 1200px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 10px;
+	}
+	
+	&__body {
+		border-radius: 25px;
+		box-shadow: 0 0 30px rgb(172, 172, 172);
+		background-color: rgb(240, 240, 240);
+		position: relative;
+		margin: 40px 0;
+	}
+
+	&__top {
+		width: 100%;
+		top: 50px;
+		left: 0;
+		position: absolute;
+	}
+	
+	&__head {
+		display: flex;
+		align-items: center;
+		align-content: center;
+		position: relative;
+		z-index: 2;
+		padding: 0 60px;
+		&::after {
+			position: absolute;
+			top: calc(50% - 75px);
+			left: 0;
+			content: "";
+			display: block;
+			width: 100%;
+			height: 150px;
+			background-color: rgb(224, 224, 224);
+			z-index: -1;
+		}
+	}
+	
+	&__head-avatar {
+		border-radius: 50%;
+		border: 3px solid $border-title;
+		overflow: hidden;
+		width: 200px;
+		height: 200px;
+		img {
+			object-fit: cover;
+			width: 200px;
+			height: 200px;
+		}
+	}
+	
+	&__haed-about {
+		margin-left: 70px;
+	}
+
+	&__info-item {
+		margin-bottom: 100px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	
+	&__head-title {
+		border-bottom: none;
+		font-size: 50px;
+		margin-bottom: 0;
+	}
+	
+	&__head-subtitle {
+		font-size: 20px;
+	}
+	
+	&__info {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	&__info-left {
+		border-radius: 25px 0 0 25px;
+		max-width: 250px;
+		width: 100%;
+		padding-bottom: 40px;
+		padding-top: 300px;
+		padding-left: 60px;
+		padding-right: 60px;
+		background-color: #3f3f3f;
+		color: $white;
+	}
+		
+	&__info-right {
+		padding-bottom: 40px;
+		padding-top: 300px;
+		padding-right: 60px;
+		padding-left: 60px;
+	}
+	
+	&__info-title {
+	}
+	
+	&__info-list {
+		list-style: none;
+		padding: 0;
+		a {
+			color: $white;
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+		}
+		img {
+			margin-right: 15px;
+			display: block;
+			width: 20px;
+			height: 20px;
+		}
+	}
+	
+	&__info-link {
+		margin-bottom: 10px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	
+	&__info-text {
+		a {
+			color: $grey-dark;
+			&:hover {
+				color: $border-title;
+			}
+		}
+		ol {
+			font-size: 20px;
+		}
+		code {
+			font-size: 15px;
+		}
+	}
+}
+	
