@@ -82,21 +82,189 @@
 							</div>
 							<div class="main__info-text">
 								<pre><code>
-//Nuclear Missile Manager
+//Slider
 
-function launchMissile(i) {
-	setTimeout(function() {
-		i
-	}, i * 1000);
-}
-
-function launchAll() {
-	for(var i = 0; i < 5; i++) {
-		launchMissile(i)
+document.addEventListener("DOMContentLoaded", () => {
+let arrCards = [{
+		"id": "0",
+		"name": "Jennifer",
+		"img": "../../assets/images/pets-jennifer.jpg",
+		"type": "Dog",
+		"breed": "Labrador",
+		"description": "",
+		"age": "2 months",
+		"inoculations": ["none"],
+		"diseases": ["none"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "1",
+		"name": "Sophia",
+		"img": "../../assets/images/pets-katrine (1).png",
+		"type": "Dog",
+		"breed": "Shih tzu",
+		"description": "",
+		"age": "1 month",
+		"inoculations": ["parvovirus"],
+		"diseases": ["none"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "2",
+		"name": "Woody",
+		"img": "../../assets/images/pets-woody.jpg",
+		"type": "Dog",
+		"breed": "Golden Retriever",
+		"description": "",
+		"age": "3 years 6 months",
+		"inoculations": ["adenovirus", "distemper"],
+		"diseases": ["right back leg mobility reduced"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "3",
+		"name": "Scarlett",
+		"img": "../../assets/images/pets-scarlet.png",
+		"type": "Dog",
+		"breed": "Jack Russell Terrier",
+		"description": "",
+		"age": "3 months",
+		"inoculations": ["parainfluenza"],
+		"diseases": ["none"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "4",
+		"name": "Katrine",
+		"img": "../../assets/images/pets-katrine.jpg",
+		"type": "Cat",
+		"breed": "British Shorthair",
+		"description": "",
+		"age": "6 months",
+		"inoculations": ["panleukopenia"],
+		"diseases": ["none"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "5",
+		"name": "Timmy",
+		"img": "../../assets/images/pets-timmy.png",
+		"type": "Cat",
+		"breed": "British Shorthair",
+		"description": "",
+		"age": "2 years 3 months",
+		"inoculations": ["calicivirus", "viral rhinotracheitis"],
+		"diseases": ["kidney stones"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "6",
+		"name": "Freddie",
+		"img": "../../assets/images/pets-katrine (2).png",
+		"type": "Cat",
+		"breed": "British Shorthair",
+		"description": "",
+		"age": "2 months",
+		"inoculations": ["rabies"],
+		"diseases": ["none"],
+		"parasites": ["none"]
+	},
+	{
+		"id": "7",
+		"name": "Charly",
+		"img": "../../assets/images/pets-charly.png",
+		"type": "Dog",
+		"breed": "Jack Russell Terrier",
+		"description": "",
+		"age": "8 years",
+		"inoculations": ["bordetella bronchiseptica", "leptospirosis"],
+		"diseases": ["deafness", "blindness"],
+		"parasites": ["lice", "fleas"]
 	}
- }
-
- launchAll()
+];
+const BTN_LEFT = document.querySelector("#btn-left");
+const BTN_RIGHT = document.querySelector("#btn-right");
+const BTN_LEFT_XS = document.querySelector("#btn-left-xs");
+const BTN_RIGHT_XS = document.querySelector("#btn-right-xs");
+const CAROUSEL = document.querySelector("#carousel");
+const ITEM_LEFT = document.querySelector("#item-left");
+const ITEM_RIGHT = document.querySelector("#item-right");
+const moveLeft = () => {
+	CAROUSEL.classList.add("transition-left");
+	BTN_LEFT.removeEventListener("click", moveLeft);
+	BTN_RIGHT.removeEventListener("click", moveRight);
+	BTN_LEFT_XS.removeEventListener("click", moveLeft);
+	BTN_RIGHT_XS.removeEventListener("click", moveRight);
+};
+const moveRight = () => {
+	CAROUSEL.classList.add("transition-right");
+	BTN_LEFT.removeEventListener("click", moveLeft);
+	BTN_RIGHT.removeEventListener("click", moveRight);
+	BTN_LEFT_XS.removeEventListener("click", moveLeft);
+	BTN_RIGHT_XS.removeEventListener("click", moveRight);
+};
+BTN_LEFT.addEventListener("click", moveLeft);
+BTN_RIGHT.addEventListener("click", moveRight);
+BTN_LEFT_XS.addEventListener("click", moveLeft);
+BTN_RIGHT_XS.addEventListener("click", moveRight);
+let step = 6;
+CAROUSEL.addEventListener("animationend", (animationEvent) => {
+	let changedItem;
+	if (animationEvent.animationName === "move-left") {
+		CAROUSEL.classList.remove("transition-left");
+		changedItem = ITEM_LEFT;
+		document.querySelector("#item-active").innerHTML = ITEM_LEFT.innerHTML;
+	} else {
+		CAROUSEL.classList.remove("transition-right");
+		changedItem = ITEM_RIGHT;
+		document.querySelector("#item-active").innerHTML = ITEM_RIGHT.innerHTML;
+	}
+	changedItem.innerHTML = "";
+	let cardsModuleArr = [];
+	for (let j = 0; j < arrCards.length; j++) {
+		let card = document.createElement('a');
+		card.classList.add('carts-section__item', 'cart-block');
+		card.id = `card-${arrCards[j].id}`;
+		let card_info = `
+		<div class="cart-block__cart-link" id="cart-link-${j}">
+		<div class="cart-block__logo">
+			<img src="${arrCards[j].img}" alt="${arrCards[j].name}">
+		</div>
+		<div class="cart-block__info">
+			<div class="cart-block__title">${arrCards[j].name}</div>
+			<button class="cart-block__btn btn btn--border" id="card-btn-${arrCards[j].id}">Learn more</button>
+		</div>
+	`;
+		card.insertAdjacentHTML('beforeend', card_info);
+		cardsModuleArr[j] = card;
+	}
+	if (window.innerWidth >= 1280) {
+		for (let i = 0; i < 3; i++) {
+			changedItem.appendChild(cardsModuleArr[step]);
+			if (step == 7) {
+				step = 0;
+			} else {
+				step++
+			}
+			// console.log(step)
+		}
+	} else if (window.innerWidth < 1280) {
+		for (let i = 0; i < 3; i++) {
+			changedItem.appendChild(cardsModuleArr[step]);
+			if (step == 7) {
+				step = 0;
+			} else {
+				step++
+			}
+			console.log(step)
+		}
+	}
+	BTN_LEFT.addEventListener("click", moveLeft);
+	BTN_RIGHT.addEventListener("click", moveRight);
+	BTN_LEFT_XS.addEventListener("click", moveLeft);
+	BTN_RIGHT_XS.addEventListener("click", moveRight);
+})
+});
 								</code></pre>
 							</div>
 						</div>
