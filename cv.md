@@ -1,5 +1,6 @@
 
 # Hey! I'm Nikolai Komarov and this is my CV :)
+![avatar](https://sun9-46.userapi.com/impg/c857624/v857624491/19b8b8/6IYJg7CpF40.jpg?size=1728x2160&quality=96&sign=8a56dbbf4bf77be042e70747a832069f&type=album)
 
 ### My contacts:
 
